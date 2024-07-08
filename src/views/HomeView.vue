@@ -1,0 +1,17 @@
+<template>
+  <h2>Home View</h2>
+  <p>{{ $route }}</p>
+  <p>{{ $route.name }}</p>
+  <button class="btn btn-primary" @click="goAboutPage">About으로</button>
+</template>
+
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const goAboutPage = () => {
+  router.push("/about");
+};
+</script>
+
+<style lang="scss" scoped></style>

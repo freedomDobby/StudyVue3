@@ -1,22 +1,11 @@
-<template>
-	<div>
-		<TheNav></TheNav>
-		<TheView></TheView>
-	</div>
-</template>
-
-<script>
-import TheNav from './components/TheNav.vue';
-import TheView from './components/TheView.vue';
-export default {
-	components: {
-		TheNav,
-		TheView,
-	},
-	setup() {
-		return {};
-	},
-};
+<script setup>
+import TheHeader from "./layouts/TheHeader.vue";
+import TheView from "./layouts/TheView.vue";
 </script>
 
-<style lang="scss" scoped></style>
+<template>
+  <TheHeader></TheHeader>
+  <TheView></TheView>
+</template>
+
+<style></style>
