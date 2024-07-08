@@ -13,3 +13,8 @@ const posts = [
 export function getPost() {
   return posts;
 }
+
+export function getPostById(id) {
+  const numberId = parseInt(id);
+  return posts.find((item) => item.id === numberId);
+}
