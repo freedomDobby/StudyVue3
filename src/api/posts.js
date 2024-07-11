@@ -14,7 +14,7 @@ export function createPost(data) {
 }
 
 export function UpdatePost(id, data) {
-  return posts.put(id, data);
+  return posts.put(`/${id}`, data);
 }
 
 export function DeletePost(id) {
