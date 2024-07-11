@@ -20,7 +20,8 @@
         </div>
       </template>
     </PostForm>
-    <AppAlert :show="showAlert" :message="alertMessage" :type="alertType" />
+    <!-- <AppAlert :show="showAlert" :message="alertMessage" :type="alertType" /> -->
+    <AppAlert :items="alerts" />
   </div>
 </template>
 
@@ -46,7 +47,7 @@ const fetchPost = async () => {
     setForm(data);
   } catch (error) {
     console.error(error);
-    vAlert("Network is missing");
+    vAlert(error.message);
   }
 };
 
@@ -74,17 +75,21 @@ const edit = async () => {
 };
 
 //Alert
-const showAlert = ref(false);
-const alertMessage = ref("");
-const alertType = ref("");
+// const showAlert = ref(false);
+// const alertMessage = ref("");
+// const alertType = ref("");
+
+const alerts = ref([]);
 
 const vAlert = (message, type = "error") => {
-  showAlert.value = true;
-  alertMessage.value = message;
-  alertType.value = type;
-  console.log("alertType : ", alertType.value);
+  alerts.value.push({ message, type });
+  console.log("alerts : ", JSON.stringify(alerts.value));
+  // showAlert.value = true;
+  // alertMessage.value = message;
+  // alertType.value = type;
   setTimeout(() => {
-    showAlert.value = false;
+    // showAlert.value = false;
+    alerts.value.shift();
   }, 2000);
 };
 </script>
