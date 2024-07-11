@@ -12,7 +12,6 @@
         <button class="btn btn-outline-dark">다음글</button>
       </div>
       <div class="col-auto me-auto"></div>
-
       <div class="col-auto">
         <button class="btn btn-outline-dark" @click="goListPage">목록</button>
       </div>
@@ -30,31 +29,30 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { getPostById, DeletePost } from "../../api/posts";
+import { getPostById, DeletePost } from "@/api/posts";
 import { ref } from "vue";
-
-const router = useRouter();
-// const id = route.params.id;
-const post = ref({});
 
 const props = defineProps({
   id: [String, Number],
 });
 
-const goListPage = () => {
-  router.push({
-    name: "PostList",
-  });
-};
-
-const goEditPage = () => {
-  router.push({
-    name: "PostEdit",
-    params: {
-      id: props.id,
-    },
-  });
-};
+const router = useRouter();
+// const id = route.params.id;
+/**
+ * ref
+ * 장) 객체 할당 가능
+ * 단) form.value.title, form.value.content
+ * 장) 일관성
+ *
+ * reactvie
+ * 단) 객체 할당 불가능
+ * 장) form.title, form.content
+ */
+const post = ref({
+  title: null,
+  content: null,
+  createAt: null,
+});
 
 const fetchPost = async () => {
   try {
@@ -70,17 +68,20 @@ const setPost = ({ title, content, createAt }) => {
   post.value.createAt = createAt;
 };
 fetchPost();
-
 const remove = async () => {
   try {
-    if (confirm("삭제 하시겠습니까?")) {
-      await DeletePost(props.id);
-      router.push({ name: "PostList" });
+    if (confirm("삭제 하시겠습니까?") === false) {
+      return;
     }
+    await DeletePost(props.id);
+    router.push({ name: "PostList" });
   } catch (error) {
     console.error(error);
   }
 };
+const goListPage = () => router.push({ name: "PostList" });
+const goEditPage = () =>
+  router.push({ name: "PostEdit", params: { id: props.id } });
 </script>
 
 <style lang="scss" scoped></style>

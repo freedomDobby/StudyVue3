@@ -28,7 +28,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { getPostById, UpdatePost } from "../../api/posts";
+import { getPostById, updatePost } from "../../api/posts";
 import PostForm from "../../components/posts/PostForm.vue";
 import AppAlert from "../../components/AppAlert.vue";
 
@@ -66,7 +66,7 @@ const goDetailPage = () =>
 
 const edit = async () => {
   try {
-    await UpdatePost(id, { ...form.value });
+    await updatePost(id, { ...form.value });
     // router.push({ name: "PostDetail", params: { id } });
     vAlert("Editing is Success!", "success");
   } catch (error) {
