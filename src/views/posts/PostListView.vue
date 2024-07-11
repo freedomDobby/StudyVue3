@@ -15,6 +15,7 @@
           :content="item.content"
           :createAt="item.createAt"
           @click="goPage(item.id)"
+          @modal="openModal(item)"
         />
       </template>
     </AppGrid>
@@ -24,6 +25,15 @@
       :pageCount="pageCount"
       @page="(page) => (params._page = page)"
     />
+    <Teleport to="#modal">
+      <PostModal
+        v-model="show"
+        :title="modalTitle"
+        :content="modalContent"
+        :createAt="modalCreateAt"
+      />
+    </Teleport>
+
     <template v-if="posts && posts.length > 0">
       <hr class="my-5" />
       <AppCard>
@@ -35,7 +45,7 @@
 
 <script setup>
 import PostItem from "../../components/posts/PostItem.vue";
-import { computed, ref, watchEffect } from "vue";
+import { computed, createApp, ref, watchEffect } from "vue";
 import { getPost } from "../../api/posts";
 import { useRouter } from "vue-router";
 import PostDetailView from "./PostDetailView.vue";
@@ -43,6 +53,7 @@ import AppCard from "../../components/AppCard.vue";
 import AppPagination from "../../components/AppPagination.vue";
 import AppGrid from "../../components/AppGrid.vue";
 import PostFilter from "../../components/posts/PostFilter.vue";
+import PostModal from "../../components/posts/PostModal.vue";
 
 const router = useRouter();
 const posts = ref([]);
@@ -80,6 +91,20 @@ const goPage = (id) => {
       id,
     },
   });
+};
+
+//modal
+const show = ref(false);
+const modalTitle = ref("");
+const modalContent = ref("");
+const modalCreateAt = ref("");
+
+const openModal = ({ title, content, createAt }) => {
+  modalTitle.value = title;
+  modalContent.value = content;
+  modalCreateAt.value = createAt;
+
+  show.value = true;
 };
 </script>
 
