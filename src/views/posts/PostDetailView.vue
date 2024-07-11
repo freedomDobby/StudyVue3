@@ -38,7 +38,7 @@ const router = useRouter();
 const post = ref({});
 
 const props = defineProps({
-  id: String,
+  id: [String, Number],
 });
 
 const goListPage = () => {
