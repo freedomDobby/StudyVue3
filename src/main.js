@@ -3,14 +3,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
-import funcPulgins from "./plugins/func";
-import objPlugins from "./plugins/obj";
-import person from "./plugins/person";
+import globalComponents from "./plugins/global-components";
 
 const app = createApp(App);
-app.use(funcPulgins);
-app.use(person, { name: "홍길동" });
-app.use(objPlugins, { name: "vue3-post" });
+app.use(globalComponents);
 
 app.use(router);
 app.mount("#app");
