@@ -1,5 +1,5 @@
-# learn-vue3
-## Post CRUD
+# learn-vue3_Post CRUD
+
 #### Inrlearn Vue3 완벽 마스터: 기초부터 실전까지 - 실전편
 
 ### 1️⃣ Create
