@@ -3,8 +3,17 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
+import funcPulgins from "./plugins/func";
+import objPlugins from "./plugins/obj";
+import person from "./plugins/person";
 
-createApp(App).use(router).mount("#app");
+const app = createApp(App);
+app.use(funcPulgins);
+app.use(person, { name: "홍길동" });
+app.use(objPlugins, { name: "vue3-post" });
+
+app.use(router);
+app.mount("#app");
 
 import "bootstrap/dist/js/bootstrap.js";
 
