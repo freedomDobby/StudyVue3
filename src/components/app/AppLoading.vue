@@ -1,7 +1,11 @@
 <template>
   <div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <button class="btn btn-primary" type="button" disabled>
+      <span
+        class="spinner-border spinner-border-sm me-2"
+        aria-hidden="true"
+      ></span>
+      <span role="status">Loading...</span>
+    </button>
   </div>
 </template>
