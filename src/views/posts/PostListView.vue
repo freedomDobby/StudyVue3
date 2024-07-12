@@ -9,6 +9,8 @@
     />
 
     <hr class="my-4" />
+    <AppLoading />
+    <AppError :message="'Error!'" />
 
     <AppGrid :items="posts">
       <template v-slot="{ item }">
@@ -53,9 +55,12 @@ import { useRouter } from "vue-router";
 import PostDetailView from "./PostDetailView.vue";
 import PostFilter from "../../components/posts/PostFilter.vue";
 import PostModal from "../../components/posts/PostModal.vue";
+import AppLoading from "../../components/app/AppLoading.vue";
+import AppError from "../../components/app/AppError.vue";
 
 const router = useRouter();
 const posts = ref([]);
+const error = ref(null);
 const params = ref({
   _sort: "createAt",
   _order: "desc",

@@ -1,12 +1,22 @@
 <template>
-  <h2>Home View</h2>
-  <p>{{ $route }}</p>
-  <p>{{ $route.name }}</p>
-  <button class="btn btn-primary" @click="goAboutPage">About으로</button>
-  <hr class="my-4" />
-  <AppGrid :items="items" v-slot="{ item }" colClass="col-6">
-    <AppCard>{{ item }}</AppCard>
-  </AppGrid>
+  <div
+    id="carouselExampleSlidesOnly"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../assest/surface.jpg" class="d-block w-100" alt="Img1" />
+      </div>
+      <div class="carousel-item">
+        <img src="../assest/surface_02.jpg" class="d-block w-100" alt="Img2" />
+      </div>
+      <div class="carousel-item">
+        <img src="../assest/waves.jpg" class="d-block w-100" alt="Img3" />
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary mt-4" @click="goAboutPage">About으로</button>
   <hr class="my-4" />
 </template>
 
