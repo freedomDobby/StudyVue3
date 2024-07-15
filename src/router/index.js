@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: "/posts/create",
-    name: "postCreate",
+    name: "PostCreate",
     component: PostCreateView,
   },
   {
