@@ -53,19 +53,16 @@
 
 <script setup>
 import PostItem from "../../components/posts/PostItem.vue";
-import { computed, ref, watchEffect } from "vue";
-import { getPost } from "../../api/posts";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import PostDetailView from "./PostDetailView.vue";
 import PostFilter from "../../components/posts/PostFilter.vue";
 import PostModal from "../../components/posts/PostModal.vue";
 import AppLoading from "../../components/app/AppLoading.vue";
 import AppError from "../../components/app/AppError.vue";
+import { useAxios } from "../../components/hooks/useAxios";
 
 const router = useRouter();
-const posts = ref([]);
-const error = ref(null);
-const loading = ref(false);
 const params = ref({
   _sort: "createdAt",
   _order: "desc",
@@ -73,28 +70,21 @@ const params = ref({
   _limit: 3,
   title_like: "",
 });
+
+const {
+  response,
+  data: posts,
+  error,
+  loading,
+} = useAxios("/posts", { method: "get", params });
+
 // pagination
-const totalCount = ref(0);
+const totalCount = computed(() => response.value.headers["x-total-count"]);
 const pageCount = computed(() =>
   Math.ceil(totalCount.value / params.value._limit)
 );
-const fetchPosts = async () => {
-  try {
-    loading.value = true;
-    const { data, headers } = await getPost(params.value);
-    posts.value = data;
-    // console.log("data.value : ", data);
-    totalCount.value = headers["x-total-count"];
-  } catch (err) {
-    error.value = err;
-  } finally {
-    loading.value = false;
-  }
-};
-watchEffect(fetchPosts);
-// fetchPosts();
+
 const goPage = (id) => {
-  // router.push(`/posts/${id}`);
   router.push({
     name: "PostDetail",
     params: {
@@ -102,6 +92,7 @@ const goPage = (id) => {
     },
   });
 };
+
 // modal
 const show = ref(false);
 const modalTitle = ref("");
