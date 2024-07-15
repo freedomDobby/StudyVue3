@@ -1,39 +1,16 @@
 {
   "posts": [
     {
-      "title": "안녕!!_title_1",
-      "content": "안녕!!_content_1",
-      "id": 10
-    },
-    {
-      "title": null,
-      "content": null,
-      "createAt": "2024-07-10",
-      "id": 11
-    },
-    {
-      "title": null,
-      "content": null,
-      "createAt": "2024-07-11",
-      "id": 12
-    },
-    {
-      "title": "Test_05_title",
-      "content": "Test_05_content",
-      "createAt": "2024-07-12",
-      "id": 13
-    },
-    {
-      "title": null,
-      "content": null,
-      "createAt": "2024-07-12",
-      "id": 14
-    },
-    {
-      "title": null,
-      "content": null,
-      "createAt": "2024-07-12",
+      "title": "dateTest_title_24.07.15.11:39",
+      "content": "dateTest_content_24.07.15.11:39",
+      "createAt": 1721011159396,
       "id": 15
+    },
+    {
+      "title": "Test_01",
+      "content": "Test_01",
+      "createAt": 1721011233603,
+      "id": 16
     }
   ]
 }

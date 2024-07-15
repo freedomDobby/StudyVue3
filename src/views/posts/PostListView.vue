@@ -9,32 +9,36 @@
     />
 
     <hr class="my-4" />
-    <AppLoading />
-    <AppError :message="'Error!'" />
 
-    <AppGrid :items="posts">
-      <template v-slot="{ item }">
-        <PostItem
-          :title="item.title"
-          :content="item.content"
-          :create-at="item.createAt"
-          @click="goPage(item.id)"
-          @modal="openModal(item)"
-        ></PostItem>
-      </template>
-    </AppGrid>
+    <AppLoading v-if="loading" />
 
-    <AppPagination
-      :current-page="params._page"
-      :page-count="pageCount"
-      @page="(page) => (params._page = page)"
-    />
+    <AppError v-else-if="error" :message="error.message" />
+
+    <template v-else>
+      <AppGrid :items="posts">
+        <template v-slot="{ item }">
+          <PostItem
+            :title="item.title"
+            :content="item.content"
+            :created-at="item.createAt"
+            @click="goPage(item.id)"
+            @modal="openModal(item)"
+          ></PostItem>
+        </template>
+      </AppGrid>
+
+      <AppPagination
+        :current-page="params._page"
+        :page-count="pageCount"
+        @page="(page) => (params._page = page)"
+      />
+    </template>
     <Teleport to="#modal">
       <PostModal
         v-model="show"
         :title="modalTitle"
         :content="modalContent"
-        :create-at="modalCreateAt"
+        :created-at="modalCreatedAt"
       />
     </Teleport>
 
@@ -61,16 +65,14 @@ import AppError from "../../components/app/AppError.vue";
 const router = useRouter();
 const posts = ref([]);
 const error = ref(null);
+const loading = ref(false);
 const params = ref({
-  _sort: "createAt",
+  _sort: "createdAt",
   _order: "desc",
   _page: 1,
   _limit: 3,
   title_like: "",
 });
-
-//Error
-
 // pagination
 const totalCount = ref(0);
 const pageCount = computed(() =>
@@ -78,11 +80,15 @@ const pageCount = computed(() =>
 );
 const fetchPosts = async () => {
   try {
+    loading.value = true;
     const { data, headers } = await getPost(params.value);
     posts.value = data;
+    // console.log("data.value : ", data);
     totalCount.value = headers["x-total-count"];
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    error.value = err;
+  } finally {
+    loading.value = false;
   }
 };
 watchEffect(fetchPosts);
@@ -100,12 +106,12 @@ const goPage = (id) => {
 const show = ref(false);
 const modalTitle = ref("");
 const modalContent = ref("");
-const modalCreateAt = ref("");
-const openModal = ({ title, content, createAt }) => {
+const modalCreatedAt = ref("");
+const openModal = ({ title, content, createdAt }) => {
   show.value = true;
   modalTitle.value = title;
   modalContent.value = content;
-  modalCreateAt.value = createAt;
+  modalCreatedAt.value = createdAt;
 };
 </script>
 

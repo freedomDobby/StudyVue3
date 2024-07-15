@@ -2,22 +2,25 @@
   <div>
     <h2>게시글 등록</h2>
     <hr class="my-4" />
+    <AppError v-if="error" :message="error.message" />
     <PostForm
       v-model:title="form.title"
       v-model:content="form.content"
       @submit.prevent="save"
     >
       <template #actions>
-        <div class="pt-4">
-          <button
-            type="button"
-            class="btn btn-outline-dark me-2"
-            @click="goList"
-          >
-            목록
-          </button>
-          <button class="btn btn-primary">저장</button>
-        </div>
+        <button class="btn btn-outline-dark me-2" @click="goList">목록</button>
+        <button class="btn btn-primary" :disabled="loading">
+          <template v-if="loading">
+            <span
+              class="spinner-grow spinner-grow-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden" role="status">Loading...</span>
+          </template>
+          <template v-else> 저장</template>
+        </button>
       </template>
     </PostForm>
   </div>
@@ -28,6 +31,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { createPost } from "../../api/posts";
 import PostForm from "../../components/posts/PostForm.vue";
+import AppError from "../../components/app/AppError.vue";
 
 const router = useRouter();
 
@@ -42,21 +46,21 @@ const goList = () => {
   });
 };
 
+const loading = ref(false);
+const error = ref(null);
+
 const save = async () => {
   try {
-    const now = new Date();
-    // 년도-월-일 형식으로 변환
-    const formattedDate = `${now.getFullYear()}-${String(
-      now.getMonth() + 1
-    ).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-    const data = await createPost({
+    loading.value = true;
+    createPost({
       ...form.value,
-      createAt: formattedDate,
+      createAt: Date.now(),
     });
     router.push({ name: "PostList" });
-    console.log(data);
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    error.value = err;
+  } finally {
+    loading.value = false;
   }
 };
 </script>

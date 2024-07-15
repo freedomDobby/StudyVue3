@@ -4,10 +4,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
 import globalComponents from "./plugins/global-components";
+import dayjs from "./plugins/dayjs";
 
 const app = createApp(App);
 app.use(globalComponents);
-
+app.use(dayjs);
 app.use(router);
 app.mount("#app");
 
