@@ -1,9 +1,8 @@
 <template>
-  <!-- Transition Group -->
   <div class="app-alert">
     <TransitionGroup name="slide">
       <div
-        v-for="({ message, type }, index) in items"
+        v-for="({ message, type }, index) in alerts"
         :key="index"
         class="alert"
         :class="typeStyle(type)"
@@ -16,14 +15,10 @@
 </template>
 
 <script setup>
-//Transition Group
-defineProps({
-  items: Array,
-});
-
-const typeStyle = (type) => {
-  return type === "error" ? "alert-danger" : "alert-success";
-};
+import { useAlert } from "../../composables/alerts";
+const { alerts } = useAlert();
+const typeStyle = (type) =>
+  type === "error" ? "alert-danger" : "alert-primary";
 </script>
 
 <style scoped>
@@ -38,12 +33,10 @@ const typeStyle = (type) => {
   opacity: 0;
   transform: translateY(-30px);
 }
-
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.5s ease;
 }
-
 .slide-enter-to,
 .slide-leave-from {
   opacity: 1;
