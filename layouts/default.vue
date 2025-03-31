@@ -1,0 +1,19 @@
+<template>
+  <div>
+    <header>
+      <h1>{{ $route.name }} 페이지</h1>
+      <NuxtLink to="/">홈페이지</NuxtLink>
+      <NuxtLink to="/main">메인페이지</NuxtLink>
+      <NuxtLink to="/product">상품페이지</NuxtLink>
+    </header>
+    <slot />
+  </div>
+</template>
+
+<script>
+export default {
+  create() {
+    console.log(this.$route)
+  },
+}
+</script>
