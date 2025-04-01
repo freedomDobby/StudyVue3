@@ -4,16 +4,21 @@ module.exports = {
     browser: true,
     node: true,
   },
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
+  // parserOptions: {
+  //   parser: '@babel/eslint-parser',
+  //   requireConfigFile: false, 
+  // },
   extends: [
     '@nuxtjs',
-    'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: ['nuxt'],
+  plugins: ['nuxt', 'vue', 'prettier'],
   rules: {
-    'nuxt/rule-name': 2,
+    'prettier/prettier': 'error', 
+    'vue/multi-word-component-names': 'off', 
+    'vue/html-self-closing': 'off', 
+    'nuxt/rule-name': 'off', 
   },
-}
+};
