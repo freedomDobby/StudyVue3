@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <main>
-      <SearchInput :searchKeyWord="searchKeyWord"></SearchInput>
+      <SearchInput v-model="inputText" @search="searchProducts"></SearchInput>
       <ul>
         <li
           v-for="item in products"
@@ -23,28 +23,15 @@
 
 <script>
 import axios from 'axios';
-import ProductList from '~/components/ProductList.vue';
-import SearchInput from '~/components/SearchInput.vue';
+import { fetchProductsByKeyword } from '@/api/index';
 
 export default {
-  components: { ProductList, SearchInput },
 
   data() {
     return {
       products: [],
+      inputText: '',
     };
-  },
-
-  data() {
-    return {
-      searchKeyWord: '',
-    };
-  },
-
-  methods: {
-    moveToDetailPage(id) {
-      this.$router.push(`detail/${id}`);
-    },
   },
 
   async created() {
@@ -56,6 +43,17 @@ export default {
       console.error('Error fetching products:', error);
     }
   },
+
+  methods: {
+    moveToDetailPage(id) {
+      this.$router.push(`detail/${id}`);
+    },
+    async searchProducts() {
+      const response = await fetchProductsByKeyword(this.inputText);
+      console.log('Search response )))', response);
+      this.products = response.data;
+    },
+  },
 };
 </script>
 
@@ -66,7 +64,6 @@ export default {
 }
 .item {
   display: inline-block;
-  border: 1px solid red;
   width: 400px;
   height: 300px;
   text-align: center;

@@ -11,6 +11,9 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <p class="price">{{ product.price }}</p>
+        <button 
+        @click="moveToCartPage()"
+        >Cart</button>
         <!-- <button type="button" @click="addToCart">Add to Cart</button> -->
       </div>
     </div>
@@ -33,6 +36,12 @@ export default {
     this.product = response.data;
     console.log('product )))', product);
     return { product };
+  },
+
+  methods: {
+    moveToCartPage() {
+      this.$router.push(`/cart`);
+    },
   },
 };
 </script>
