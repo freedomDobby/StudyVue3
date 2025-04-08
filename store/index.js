@@ -1,17 +1,19 @@
+import { fetchCartItems } from '~/api';
+
 // store/index.js
 export const state = () => ({
-  user: {},
+  cartItems: [],
 });
 
 export const mutations = {
-  setUser(state, user) {
-    state.user = user;
+  addCartItem(state, cartItem) {
+    state.cartItems.push(cartItem);
   },
 };
 
 export const actions = {
-  async fetchUser(context) {
-    const response = await axios.get('users/1');
-    context.commit('setUser', response.data);
+  async FETCH_CART_ITEMS({ commit }) {
+    const response = await fetchCartItems();
+    console.log('FETCH_CART_ITEMS: ', response);
   },
 };

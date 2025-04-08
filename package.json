@@ -24,7 +24,18 @@
     "vue-router": "^4.5.0"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.10.1",
     "axios": "^1.8.4",
+    "pinia": "^3.0.1",
     "vuex": "^4.1.0"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
   }
 }

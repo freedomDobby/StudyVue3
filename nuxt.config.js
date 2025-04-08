@@ -1,37 +1,47 @@
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 
-export default {
-  head: {
-    title: 'learn-nuxt',
-    htmlAttrs: {
-      lang: 'en',
+export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'learn-nuxt',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: '' },
+      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   css: ['@/assets/css/reset.css'],
-  plugins: [],
-  components: true,
+  modules: ['@pinia/nuxt'],
 
-  buildModules: ['@nuxtjs/eslint-module'],
-
-  modules: [],
-  build: {},
-
-  server: {
-    port: 5000,
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate'],
   },
 
-  env: {
-    baseURL: isProduction
-      ? 'https://my-json-server.typicode.com/joshua1988/nuxt-shopping-api'
-      : 'http://localhost:5000',
+  imports: {
+    dirs: ['./stores'],
   },
 
-  compatibilityDate: '2025-03-28',
-}
+  devtools: true,
+
+  runtimeConfig: {
+    public: {
+      baseURL: isProduction
+        ? 'https://my-json-server.typicode.com/joshua1988/nuxt-shopping-api'
+        : 'http://localhost:5000',
+    },
+  },
+
+  vite: {
+    server: {
+      port: 5000,
+    },
+  },
+
+  compatibilityDate: '2025-04-07',
+});

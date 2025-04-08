@@ -11,22 +11,21 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <p class="price">{{ product.price }}</p>
-        <button 
-        @click="moveToCartPage()"
-        >Cart</button>
-        <!-- <button type="button" @click="addToCart">Add to Cart</button> -->
+        <button @click="addToCart()">Add to Cart</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { fetchProductById } from '@/api/index';
+import { createCartItme, fetchProductById } from '@/api/index';
+import { useCartStore } from '~/store/cart';
 
 export default {
   data() {
     return {
       product: [],
+      cartStore: useCartStore(),
     };
   },
 
@@ -34,14 +33,26 @@ export default {
     const id = this.$route.params.id;
     const response = await fetchProductById(id);
     this.product = response.data;
-    console.log('product )))', product);
-    return { product };
+    console.log('product )))', this.product);
   },
 
   methods: {
-    moveToCartPage() {
-      this.$router.push(`/cart`);
-    },
+    async addToCart() {
+      try {
+        const response = await createCartItme(this.product)
+        console.log("addToCart-response )))", response.data)
+        this.cartStore.addCartItem(this.product);
+        this.$router.push('/cart');
+      } catch (err) {
+        if (err.code === "ERR_BAD_RESPONSE") {
+          if (confirm("이미 장바구니에 해당 상품이 추가되었습니다.")) {
+            this.$router.push('/cart');
+          } else {
+            // 사용자가 취소를 눌렀을 경우, 아무 작업도 하지 않음 (현재 페이지 유지)
+          }
+        }
+      }
+    }
   },
 };
 </script>

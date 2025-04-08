@@ -26,7 +26,6 @@ import axios from 'axios';
 import { fetchProductsByKeyword } from '@/api/index';
 
 export default {
-
   data() {
     return {
       products: [],
@@ -52,6 +51,9 @@ export default {
       const response = await fetchProductsByKeyword(this.inputText);
       console.log('Search response )))', response);
       this.products = response.data;
+    },
+    moveToCartPage() {
+      this.$router.push('/cart')
     },
   },
 };
@@ -84,7 +86,9 @@ export default {
   right: 50px;
 }
 .cart-wrapper .btn {
+  /* border: 1px solid red; */
   display: inline-block;
+  cursor: pointer;
   height: 40px;
   font-size: 1rem;
   font-weight: 500;

@@ -1,5 +1,5 @@
 <template>
-   <div class="input-wrapper flex">
+  <div class="input-wrapper flex">
     <input
       type="text"
       class="search-input"
@@ -8,7 +8,7 @@
       @keyup.enter="$emit('search')"
     />
     <!-- <p>{{ modelValue }}</p> -->
-    <button  class="btn" @click="$emit('search')">search</button>
+    <button class="btn" @click="$emit('search')">search</button>
   </div>
 </template>
 
