@@ -15,10 +15,12 @@
         <a href="#" class="custom-a" @click="view('home')">HomeWelcom</a>
         <a href="#" class="custom-a" @click="view('counter')">Counter</a>
         {{ page }}
-        <HomeWelcom v-if="page === 'home'" />
-        <Counter v-else />
+        <LazyHomeWelcom v-if="page === 'home'" />
+        <LazyCounter v-else />
       </div>
+      <!-- Nuxt Page -->
     </div>
+    <NuxtPage />
   </div>
 </template>
 
