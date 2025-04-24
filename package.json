@@ -1,13 +1,15 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "type": "module",
   "scripts": {
+    "_note": "npm run dev -- -o",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write .",
+    "format:check": "prettier --check \"**/*.{vue,js,ts}\""
   },
   "dependencies": {
     "@nuxt/eslint": "^1.3.0",
@@ -15,5 +17,8 @@
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
   }
 }

@@ -1,4 +1,16 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./tsconfig.base.json",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "prettier.config.cjs"],
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
 }
