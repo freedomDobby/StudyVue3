@@ -20,6 +20,7 @@
       </div>
       <!-- Nuxt Page -->
     </div>
+    <NuxtLayout />
     <NuxtPage />
   </div>
 </template>
