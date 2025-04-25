@@ -1,9 +1,5 @@
 <template>Hello About</template>
 
-<script setup>
-definePageMeta({
-  layout: 'sidebar',
-})
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

@@ -6,10 +6,6 @@
 </template>
 
 <script setup>
-definePageMeta({
-  layout: 'sidebar',
-})
-
 function moveToAbout() {
   navigateTo('about')
 }
