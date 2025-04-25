@@ -2,15 +2,15 @@
   <div>
     <NuxtRouteAnnouncer />
     <div class="custom-box">
+      <!-- Test page -->
+      <!--
       <button @click="toggle">Toggle</button>
       <p>{{ checking }}</p>
     </div>
     <div class="custom-box" style="justify-content: center">
-      <!-- Toggle 버전 -->
       <div class="custom-window">
         <component :is="myComponent" />
       </div>
-      <!-- aTag버전 -->
       <div class="custom-window">
         <a href="#" class="custom-a" @click="view('home')">HomeWelcom</a>
         <a href="#" class="custom-a" @click="view('counter')">Counter</a>
@@ -18,14 +18,21 @@
         <LazyHomeWelcom v-if="page === 'home'" />
         <LazyCounter v-else />
       </div>
+    -->
       <!-- Nuxt Page -->
     </div>
-    <NuxtLayout />
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
 <script setup>
+// 레이아웃 설정
+definePageMeta({
+  layout: 'default', // 기본 레이아웃 설정
+})
+
 const checking = ref(false)
 const myComponent = shallowRef()
 
@@ -51,7 +58,6 @@ function view(name) {
   display: flex;
   justify-content: start;
   align-items: center;
-  border: 1px dotted blue;
   gap: 2px;
 }
 

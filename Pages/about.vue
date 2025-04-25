@@ -2,7 +2,7 @@
 
 <script setup>
 definePageMeta({
-  layout: false,
+  layout: 'sidebar',
 })
 </script>
 

@@ -1,8 +1,9 @@
 <template>
   <div>
-    <nav class="bg-green-500 text-white">
+    <nav class="bg-green-500 shadow-lg text-white text-lg flex justify-around">
       <NuxtLink to="/">Home</NuxtLink>
       <NuxtLink to="about">About</NuxtLink>
+      <NuxtLink to="/iphone">Iphones</NuxtLink>
       <NuxtLink to="profile">profile</NuxtLink>
     </nav>
     <!-- Here nuxt will replace page content -->
