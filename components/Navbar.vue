@@ -4,11 +4,13 @@
     <NuxtLink to="about">About</NuxtLink>
     <NuxtLink to="/iphone">Iphones</NuxtLink>
     <NuxtLink to="profile">profile</NuxtLink>
-
-    <p>Cart (1)</p>
+    <NuxtLink to="cart">Cart ({{ cart.length }})</NuxtLink>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+const cart = useCart()
+console.log(cart.value.length)
+</script>
 
 <style lang="scss" scoped></style>

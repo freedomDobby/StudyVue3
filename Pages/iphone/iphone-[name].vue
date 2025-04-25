@@ -15,7 +15,7 @@
       <!-- Info -->
       <div class="main-box" style="flex-direction: column">
         <div>iphone {{ name }}</div>
-        <div class="cart-btn">Cart</div>
+        <button @click="addToCart" class="cart-btn">Buy Now</button>
       </div>
     </div>
   </div>
@@ -27,6 +27,11 @@ const route = useRoute()
 const name = computed(() => {
   return route.params.name.replaceAll('-', ' ')
 })
+
+const cart = useCart()
+const addToCart = () => {
+  cart.value.push({ name: `iphone-${route.params.name}` })
+}
 
 // useHead({
 //   title: `Nuxt3 - Iphone${route.params.name.replaceAll('-', ' ')}`,
@@ -52,5 +57,6 @@ const name = computed(() => {
   width: 250px;
   height: 50px;
   margin-top: 10%;
+  cursor: pointer;
 }
 </style>

@@ -1,1 +1,1 @@
-export const useCart = useState(() => [])
+export const useCart = () => useState(() => [])
