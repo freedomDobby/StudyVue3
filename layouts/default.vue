@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav>
+    <nav class="bg-green-500 text-white">
       <NuxtLink to="/">Home</NuxtLink>
       <NuxtLink to="about">About</NuxtLink>
       <NuxtLink to="profile">profile</NuxtLink>
@@ -10,6 +10,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+import '../assets/css/tailwind.css'
+</script>
 
-<style lang="scss" scoped></style>
+<style></style>

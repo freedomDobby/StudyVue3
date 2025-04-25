@@ -1,5 +1,5 @@
 <template>
-  <main class="user-layout">
+  <main class="user-layout bg-gray-500">
     <article class="side-bar">
       <p>Dashboard</p>
       <p>Setting</p>
@@ -11,7 +11,9 @@
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import '../assets/css/tailwind.css'
+</script>
 
 <style>
 .side-bar {
@@ -21,5 +23,6 @@
 
 .user-layout {
   display: flex;
+  border: 1px solid red;
 }
 </style>
