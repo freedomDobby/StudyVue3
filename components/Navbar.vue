@@ -3,7 +3,7 @@
     <NuxtLink to="/">Home</NuxtLink>
     <NuxtLink to="/about">About</NuxtLink>
     <NuxtLink to="/iphone">Iphones</NuxtLink>
-    <NuxtLink to="/testBreaker">Test</NuxtLink>
+    <NuxtLink to="/test">Test</NuxtLink>
     <NuxtLink to="/profile">profile</NuxtLink>
     <NuxtLink to="/cart">Cart ({{ cart.length }})</NuxtLink>
   </nav>
@@ -11,7 +11,6 @@
 
 <script setup>
 const cart = useCart()
-console.log(cart.value.length)
 </script>
 
 <style lang="scss" scoped></style>

@@ -28,11 +28,6 @@
 </template>
 
 <script setup>
-// 레이아웃 설정
-definePageMeta({
-  layout: 'default', // 기본 레이아웃 설정
-})
-
 const checking = ref(false)
 const myComponent = shallowRef()
 

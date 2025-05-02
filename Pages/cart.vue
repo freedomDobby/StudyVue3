@@ -16,7 +16,9 @@
         <!-- count -->
         <div></div>
         <!-- delete Btn -->
-        <button style="border: 1px solid black">Delete</button>
+        <button @click="deleteCart" style="border: 1px solid black">
+          Delete
+        </button>
       </div>
     </ul>
   </div>
@@ -25,6 +27,10 @@
 <script setup>
 const cart = useCart()
 console.log(cart)
+
+const deleteCart = () => {
+  cart.value = cart.value.filter((ct) => ct.name !== fullname.value)
+}
 </script>
 
 <style>

@@ -15,7 +15,12 @@
       <!-- Info -->
       <div class="main-box" style="flex-direction: column">
         <div>iphone {{ name }}</div>
-        <button @click="addToCart" class="cart-btn">Buy Now</button>
+        <button v-if="!inCart()" @click="addToCart" class="cart-btn">
+          Buy Now
+        </button>
+        <button v-else @click="addToCart" class="cart-btn">
+          Remove in the Cart
+        </button>
       </div>
     </div>
   </div>
@@ -28,9 +33,25 @@ const name = computed(() => {
   return route.params.name.replaceAll('-', ' ')
 })
 
+const fullname = computed(() => {
+  return `iphone-${route.params.name}`
+})
+
 const cart = useCart()
+
+function inCart() {
+  const found = !!cart.value.find((ct) => ct.name == fullname.value)
+  console.log('found )))', found)
+  return found
+}
+
 const addToCart = () => {
-  cart.value.push({ name: `iphone-${route.params.name}` })
+  if (!inCart()) {
+    cart.value.push({ name: fullname })
+  } else {
+    cart.value = cart.value.filter((ct) => ct.name !== fullname.value)
+    console.log(cart.value)
+  }
 }
 
 // useHead({
