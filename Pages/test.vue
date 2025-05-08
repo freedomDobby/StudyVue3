@@ -18,15 +18,26 @@
           <td>
             <div>
               <form class="grid gap-2">
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  autocomplete="username"
-                  v-model="email"
-                  required
-                />
+                <div class="flex-box">
+                  <label for="email">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="m@example.com"
+                    autocomplete="username"
+                    v-model="email"
+                    required
+                  />
+                  <label for="name">Name</label>
+                  <input
+                    id="name"
+                    type="name"
+                    placeholder="m@example.com"
+                    autocomplete="username"
+                    v-model="name"
+                    required
+                  />
+                </div>
 
                 <label for="password">Password</label>
                 <input
@@ -139,6 +150,11 @@ const testAuth = async () => {
 </script>
 
 <style>
+.flex-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 .chef-container {
   padding-top: 3%;
   padding-left: 3%;
